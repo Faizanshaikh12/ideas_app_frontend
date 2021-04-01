@@ -27,6 +27,12 @@ export class AuthService {
     return this.auth('register', data);
   }
 
+  whoami(): Observable<User> {
+    return this.http.get<User>(`${this.api}/whoami`, {
+      headers: {authorization: `Bearer ${this.token}`}
+    });
+  }
+
   get token(): string {
     return localStorage.getItem('idea_token');
   }

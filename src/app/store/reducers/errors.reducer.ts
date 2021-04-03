@@ -1,4 +1,4 @@
-import {ErrorActions, Actions} from '../actions/errors.action';
+import {ErrorActions, Actionss} from '../actions/errors.action';
 
 
 export interface ErrorState {
@@ -9,9 +9,9 @@ const initialState: ErrorState = {
   error: null
 };
 
-export const errorReducer: (state: ErrorState, action: Actions) => ErrorState = (
+export const errorReducer: (state: ErrorState, action: Actionss) => ErrorState = (
   state = initialState,
-  action: Actions
+  action: Actionss
 ) => {
   switch (action.type) {
     case ErrorActions.ADD_ERROR:

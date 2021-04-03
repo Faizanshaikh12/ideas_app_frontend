@@ -15,4 +15,4 @@ export class RemoveError implements Action {
   constructor() {}
 }
 
-export type Actions = AddError | RemoveError;
+export type Actionss = AddError | RemoveError;

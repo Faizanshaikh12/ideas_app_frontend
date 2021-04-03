@@ -1,0 +1,6 @@
+<p-menubar [model]="items">
+  <button pButton icon="pi pi-sign-out"
+          [label]="authService.token ? 'Login' : 'Logout'"
+          routerLinkActive="/auth">
+  </button>
+</p-menubar>

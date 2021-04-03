@@ -1,10 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AppState} from './store';
 import {Store} from '@ngrx/store';
-import {AddError} from './store/actions/errors.action';
-import {LoginUser, SetInitialUser} from './store/actions/auth.action';
-import {AuthDto} from './models/auth';
-import {AuthService} from './services/auth.service';
+import {SetInitialUser} from './store/actions/auth.action';
 import {MessageService} from 'primeng/api';
 
 @Component({

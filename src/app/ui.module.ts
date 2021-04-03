@@ -5,6 +5,7 @@ import {ButtonModule} from 'primeng/button';
 import {InputTextModule} from 'primeng/inputtext';
 import {ToastModule} from 'primeng/toast';
 import {MessageService} from 'primeng/api';
+import {MenubarModule} from 'primeng/menubar';
 
 
 
@@ -15,13 +16,15 @@ import {MessageService} from 'primeng/api';
     CardModule,
     ButtonModule,
     InputTextModule,
-    ToastModule
+    ToastModule,
+    MenubarModule
   ],
   exports: [
     CardModule,
     ButtonModule,
     InputTextModule,
-    ToastModule
+    ToastModule,
+    MenubarModule
   ],
   providers: [MessageService]
 })

@@ -12,6 +12,8 @@ import {UiModule} from './ui.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import {UserModule} from './features/user/user.module';
+import {IdeaModule} from './features/idea/idea.module';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     ReactiveFormsModule,
     HttpClientModule,
     AppStoreModule,
-    UiModule
+    UiModule,
+    UserModule,
+    IdeaModule
   ],
   providers: [AuthService, ApiService],
   bootstrap: [AppComponent]

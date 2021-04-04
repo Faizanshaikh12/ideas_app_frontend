@@ -14,6 +14,14 @@ export class NavbarComponent implements OnInit {
       label: 'Home',
       routerLink: ['/'],
       icon: 'pi pi-home'
+    },
+    {
+      label: 'Users',
+      routerLink: ['/users']
+    },
+    {
+      label: 'Ideas',
+      routerLink: ['/ideas']
     }
   ];
 

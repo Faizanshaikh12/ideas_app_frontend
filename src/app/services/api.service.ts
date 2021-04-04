@@ -7,19 +7,22 @@ import {User} from '../models/user';
 import {Idea, IdeaDTO} from '../models/idea';
 import {Comment} from '../models/comment';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class ApiService {
-
   private api: string = environment.api_server + '/api';
 
-  constructor(private http: HttpClient, private auth: AuthService) {
-  }
+  constructor(private http: HttpClient, private auth: AuthService) {}
 
-  private request(method: string, endpoint: string, body?: any): Observable<any> {
+  private request(
+    method: string,
+    endpoint: string,
+    body?: any
+  ): Observable<any> {
     const url = `${this.api}/${endpoint}`;
-    return this.http.request(method, url, {body, headers: {authorization: `Bearer ${this.auth.token}`}});
+    return this.http.request(method, url, {
+      body,
+      headers: { authorization: `Bearer ${this.auth.token}` }
+    });
   }
 
   getUsers(page?: string): Observable<User[]> {
@@ -37,7 +40,7 @@ export class ApiService {
   }
 
   getNewestIdeas(page?: number): Observable<Idea[]> {
-    const endpoint = page ? `ideas/newest?page=${page}` : 'ideas/newest';
+    const endpoint = page ? `ideas/newest?page=${page}` : `ideas/newest`;
     return this.request('GET', endpoint);
   }
 
@@ -45,8 +48,8 @@ export class ApiService {
     return this.request('GET', `ideas/${id}`);
   }
 
-  createIdea(id: string, data: IdeaDTO): Observable<Idea> {
-    return this.request('POST', `ideas/${id}`, data);
+  createIdea(data: IdeaDTO): Observable<Idea> {
+    return this.request('POST', `ideas/`, data);
   }
 
   updateIdea(id: string, data: Partial<IdeaDTO>): Observable<Idea> {
@@ -61,21 +64,29 @@ export class ApiService {
     return this.request('POST', `ideas/${id}/upvote`);
   }
 
+  downvoteIdea(id: string): Observable<Idea> {
+    return this.request('POST', `ideas/${id}/downvote`);
+  }
+
   bookmarkIdea(id: string): Observable<User> {
     return this.request('POST', `ideas/${id}/bookmark`);
   }
 
   unbookmarkIdea(id: string): Observable<User> {
-    return this.request('DELETE', `ideas/${id}/unbookmark`);
+    return this.request('DELETE', `ideas/${id}/bookmark`);
   }
 
   getCommentsByIdea(idea: string, page?: string): Observable<Comment[]> {
-    const endpoint = page ? `comments/idea/${idea}?page=${page}` : `comments/idea/${idea}`;
+    const endpoint = page
+      ? `comments/idea/${idea}?page=${page}`
+      : `comments/idea/${idea}`;
     return this.request('GET', endpoint);
   }
 
   getCommentsByUser(user: string, page?: string): Observable<Comment[]> {
-    const endpoint = page ? `comments/user/${user}?page=${page}` : `comments/user/${user}`;
+    const endpoint = page
+      ? `comments/user/${user}?page=${page}`
+      : `comments/user/${user}`;
     return this.request('GET', endpoint);
   }
 
@@ -83,8 +94,8 @@ export class ApiService {
     return this.request('GET', `comments/${id}`);
   }
 
-  createComment(id: string, data): Observable<Comment> {
-    return this.request('POST', `comments/idea/${id}`, data);
+  createComment(idea: string, data): Observable<Comment> {
+    return this.request('POST', `comments/idea/${idea}`, data);
   }
 
   deleteComment(id: string): Observable<Comment> {
